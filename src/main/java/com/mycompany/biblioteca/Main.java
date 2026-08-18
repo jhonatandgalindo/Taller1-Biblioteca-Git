@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
     }
     
-    static void CREATE(){
+    static void CREATE_CLIENT(){
         String id,name,cellphone,mail;
         System.out.println("\n### Nuevo cliente ###\n");
         System.out.println("Ingrese su ID: ");
@@ -26,5 +26,11 @@ public class Main {
         clients.add(client);
         System.out.println("Cliente registrado correctamente");
     }
-    
+    static void CLIENT_LIST(){
+        System.out.println("\n### Listado clientes ###\n");
+        System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
+        for(Client c : clients){
+            System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
+        }
+    }
 }
