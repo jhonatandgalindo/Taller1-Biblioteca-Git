@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
         CREATE_CLIENT();CREATE_CLIENT();CREATE_CLIENT();
         CLIENT_LIST();
-        SEARCH_CLIENT();
+        String id = SEARCH_CLIENT();
+        UPDATE_CLIENT(id);
+        CLIENT_LIST();
     }
     
     static void CREATE_CLIENT(){
@@ -36,7 +38,7 @@ public class Main {
             System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
         }
     }
-    static void SEARCH_CLIENT(){
+    static String SEARCH_CLIENT(){
         String id;
         System.out.println("\n### Buscar Cliente ###\n");
         System.out.println("Introduzca el ID del cliente:");
@@ -46,9 +48,28 @@ public class Main {
                 System.out.println("Cliente encontrado:");
                 System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
                 System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
-                return;
+                return id;
             }
         }
         System.out.println("Cliente NO encontrado");
+        return null;
+    }
+    static void UPDATE_CLIENT(String id){
+        
+        for(Client c : clients){
+            
+            if(c.id.equals(id)){
+                System.out.println("\n### Actualizar Datos del Cliente ###\n");
+                System.out.println("ID:");
+                c.id=sc.nextLine();
+                System.out.println("Nombre:");
+                c.name=sc.nextLine();
+                System.out.println("Telefono:");
+                c.cellphone=sc.nextLine();
+                System.out.println("Correo electronico:");
+                c.mail=sc.nextLine();
+                System.out.println("DATOS DEL CLIENTE ACTUALIZADOS CORRECTAMENTE");
+            }
+        }
     }
 }
