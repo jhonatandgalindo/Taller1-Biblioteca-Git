@@ -9,6 +9,9 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        CREATE_CLIENT();CREATE_CLIENT();CREATE_CLIENT();
+        CLIENT_LIST();
+        SEARCH_CLIENT();
     }
     
     static void CREATE_CLIENT(){
@@ -32,5 +35,20 @@ public class Main {
         for(Client c : clients){
             System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
         }
+    }
+    static void SEARCH_CLIENT(){
+        String id;
+        System.out.println("\n### Buscar Cliente ###\n");
+        System.out.println("Introduzca el ID del cliente:");
+        id = sc.nextLine();
+        for(Client c : clients){
+            if(c.id.equals(id)){
+                System.out.println("Cliente encontrado:");
+                System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
+                System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
+                return;
+            }
+        }
+        System.out.println("Cliente NO encontrado");
     }
 }
