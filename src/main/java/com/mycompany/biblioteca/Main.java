@@ -12,7 +12,7 @@ public class Main {
         CREATE_CLIENT();CREATE_CLIENT();CREATE_CLIENT();
         CLIENT_LIST();
         String id = SEARCH_CLIENT();
-        UPDATE_CLIENT(id);
+        DELETE_CLIENT(id);
         CLIENT_LIST();
     }
     
@@ -72,4 +72,16 @@ public class Main {
             }
         }
     }
+    static void DELETE_CLIENT(String id){
+        for(Client c : clients){
+            int i=0;
+            if(c.id.equals(id)){
+                System.out.println("\n### Actualizar Datos del Cliente ###\n");
+                clients.remove(i);
+                System.out.println("CLIENTE ELIMINADO CORRECTAMENTE");
+                return;
+            }
+        }
+    }
+    
 }
