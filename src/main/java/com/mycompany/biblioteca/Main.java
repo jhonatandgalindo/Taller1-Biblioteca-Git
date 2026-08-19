@@ -95,7 +95,13 @@ public class Main {
             System.out.println(b.code + " - " + b.title + " - " + b.publicationYear + " - " + b.author + " - " + available);
         }
     }
-
+    static void LOAN_LIST(){
+        System.out.println("\n### Listado prestamos ###\n");
+        System.out.println("ID - CLIENTE - LIBRO - FECHA - ESTADO");
+        for (Loan l : loans) {
+            System.out.println(l.idLoan + " - " + l.client + " - " + l.book + " - " + l.date + " - " + l.status);
+        }
+    }
     static Client SEARCH_CLIENT() {
         String id;
         System.out.println("\n### Buscar Cliente ###\n");
