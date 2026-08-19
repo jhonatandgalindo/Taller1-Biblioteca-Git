@@ -63,6 +63,8 @@ public class Main {
             book=SEARCH_BOOK();
             if(!book.available){
                 System.out.println("Libro no disponible, favor registrar otro.");
+            }else{
+                book.available=false;
             }
         }while(!book.available);
         System.out.println("Ingrese la fecha del prestamo[Formato YYYY-MM-DD]:");
@@ -190,6 +192,18 @@ public class Main {
                 System.out.println("\n### Eliminar Libro ###\n");
                 books.remove(i);
                 System.out.println("LIBRO ELIMINADO CORRECTAMENTE");
+                return;
+            }
+        }
+    }
+    static void RETURN_LOAN(String idLoan){
+        for (Loan l : loans) {
+            int i = 0;
+            if (l.idLoan.equals(idLoan)) {
+                l.book.available=true;
+                System.out.println("\n### DEVOLUCION PRESTAMO ###\n");
+                books.remove(i);
+                System.out.println("PRESTAMO DEVUELTO CORRECTAMENTE");
                 return;
             }
         }
