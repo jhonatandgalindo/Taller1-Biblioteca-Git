@@ -12,9 +12,189 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
-    }
 
+    int option;
+
+    do {
+        System.out.println("\n==============================");
+        System.out.println("      SISTEMA BIBLIOTECA");
+        System.out.println("==============================");
+        System.out.println("1. Gestionar clientes");
+        System.out.println("2. Gestionar libros");
+        System.out.println("3. Gestionar prestamos");
+        System.out.println("0. Salir");
+        System.out.println("==============================");
+        System.out.println("Seleccione una opcion:");
+
+        option = sc.nextInt();
+        sc.nextLine();
+
+        switch (option) {
+
+            case 1:
+
+                int clientOption;
+
+                do {
+                    System.out.println("\n### GESTION DE CLIENTES ###\n");
+                    System.out.println("1. Registrar cliente");
+                    System.out.println("2. Listar clientes");
+                    System.out.println("3. Buscar cliente");
+                    System.out.println("4. Actualizar cliente");
+                    System.out.println("5. Eliminar cliente");
+                    System.out.println("0. Volver");
+                    System.out.println("Seleccione una opcion:");
+
+                    clientOption = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (clientOption) {
+
+                        case 1:
+                            CREATE_CLIENT();
+                            break;
+
+                        case 2:
+                            CLIENT_LIST();
+                            break;
+
+                        case 3:
+                            SEARCH_CLIENT();
+                            break;
+
+                        case 4:
+                            System.out.println("Ingrese el ID del cliente:");
+                            String idUpdate = sc.nextLine();
+                            UPDATE_CLIENT(idUpdate);
+                            break;
+
+                        case 5:
+                            System.out.println("Ingrese el ID del cliente:");
+                            String idDelete = sc.nextLine();
+                            DELETE_CLIENT(idDelete);
+                            break;
+
+                        case 0:
+                            break;
+
+                        default:
+                            System.out.println("Opcion no valida.");
+                    }
+
+                } while (clientOption != 0);
+
+                break;
+
+
+            case 2:
+
+                int bookOption;
+
+                do {
+                    System.out.println("\n### GESTION DE LIBROS ###\n");
+                    System.out.println("1. Registrar libro");
+                    System.out.println("2. Listar libros");
+                    System.out.println("3. Buscar libro");
+                    System.out.println("4. Actualizar libro");
+                    System.out.println("5. Eliminar libro");
+                    System.out.println("0. Volver");
+                    System.out.println("Seleccione una opcion:");
+
+                    bookOption = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (bookOption) {
+
+                        case 1:
+                            CREATE_BOOK();
+                            break;
+
+                        case 2:
+                            BOOK_LIST();
+                            break;
+
+                        case 3:
+                            SEARCH_BOOK();
+                            break;
+
+                        case 4:
+                            System.out.println("Ingrese el codigo del libro:");
+                            String codeUpdate = sc.nextLine();
+                            UPDATE_BOOK(codeUpdate);
+                            break;
+
+                        case 5:
+                            System.out.println("Ingrese el codigo del libro:");
+                            String codeDelete = sc.nextLine();
+                            DELETE_BOOK(codeDelete);
+                            break;
+
+                        case 0:
+                            break;
+
+                        default:
+                            System.out.println("Opcion no valida.");
+                    }
+
+                } while (bookOption != 0);
+
+                break;
+
+
+            case 3:
+
+                int loanOption;
+
+                do {
+                    System.out.println("\n### GESTION DE PRESTAMOS ###\n");
+                    System.out.println("1. Registrar prestamo");
+                    System.out.println("2. Listar prestamos");
+                    System.out.println("3. Devolver prestamo");
+                    System.out.println("0. Volver");
+                    System.out.println("Seleccione una opcion:");
+
+                    loanOption = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (loanOption) {
+
+                        case 1:
+                            CREATE_LOAN();
+                            break;
+
+                        case 2:
+                            LOAN_LIST();
+                            break;
+
+                        case 3:
+                            System.out.println("Ingrese el ID del prestamo:");
+                            String idLoan = sc.nextLine();
+                            RETURN_LOAN(idLoan);
+                            break;
+
+                        case 0:
+                            break;
+
+                        default:
+                            System.out.println("Opcion no valida.");
+                    }
+
+                } while (loanOption != 0);
+
+                break;
+
+
+            case 0:
+                System.out.println("Saliendo del sistema...");
+                break;
+
+            default:
+                System.out.println("Opcion no valida.");
+        }
+
+    } while (option != 0);
+}
+    
     static void CREATE_CLIENT() {
         String id, name, cellphone, mail;
         System.out.println("\n### Nuevo cliente ###\n");
@@ -66,7 +246,7 @@ public class Main {
             }else{
                 book.available=false;
             }
-        }while(!book.available);
+        }while(book.available);
         System.out.println("Ingrese la fecha del prestamo[Formato YYYY-MM-DD]:");
         date = LocalDate.parse(sc.nextLine());
         System.out.println("Ingrese estado del prestamo:");
@@ -181,37 +361,43 @@ public class Main {
     }
 
     static void DELETE_CLIENT(String id) {
+        int i = 0;
         for (Client c : clients) {
-            int i = 0;
+            
             if (c.id.equals(id)) {
                 System.out.println("\n### Eliminar Cliente ###\n");
                 clients.remove(i);
                 System.out.println("CLIENTE ELIMINADO CORRECTAMENTE");
                 return;
             }
+            i++;
         }
     }
     static void DELETE_BOOK(String code){
+        int i = 0;
         for (Book b : books) {
-            int i = 0;
+            
             if (b.code.equals(code)) {
                 System.out.println("\n### Eliminar Libro ###\n");
                 books.remove(i);
                 System.out.println("LIBRO ELIMINADO CORRECTAMENTE");
                 return;
             }
+            i++;
         }
     }
     static void RETURN_LOAN(String idLoan){
+        int i = 0;
         for (Loan l : loans) {
-            int i = 0;
+            
             if (l.idLoan.equals(idLoan)) {
                 l.book.available=true;
                 System.out.println("\n### DEVOLUCION PRESTAMO ###\n");
-                books.remove(i);
+                loans.remove(i);
                 System.out.println("PRESTAMO DEVUELTO CORRECTAMENTE");
                 return;
             }
+            i++;
         }
     }
 }
