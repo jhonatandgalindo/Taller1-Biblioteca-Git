@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         CREATE_BOOK();CREATE_BOOK();CREATE_BOOK();
         BOOK_LIST();
+        SEARCH_BOOK();
     }
     
     static void CREATE_CLIENT(){
@@ -56,7 +57,7 @@ public class Main {
     }
     static void BOOK_LIST(){
         System.out.println("\n### Listado libros ###\n");
-        System.out.println("CODIGO - TITULO -ANIO PUBLICACION - AUTOR - DISPONIBLE");
+        System.out.println("CODIGO - TITULO - ANIO PUBLICACION - AUTOR - DISPONIBLE");
         for(Book b : books){
             String available;
             if(b.available){
@@ -81,6 +82,28 @@ public class Main {
             }
         }
         System.out.println("Cliente NO encontrado");
+        return null;
+    }
+    static String SEARCH_BOOK(){
+        String code;
+        System.out.println("\n### Buscar libro ###\n");
+        System.out.println("Introduzca el codigo del libro:");
+        code = sc.nextLine();
+        for(Book b : books){
+            String available;
+            if(b.available){
+                available="Si";
+            }else{
+                available="No";
+            }
+            if(b.code.equals(code)){
+                System.out.println("Libro encontrado:");
+                System.out.println("CODIGO - TITULO - ANIO PUBLICACION - AUTOR - DISPONIBLE");
+                System.out.println(b.code+" - "+b.title+" - "+b.publicationYear+" - "+b.author+" - "+available);
+                return code;
+            }
+        }
+        System.out.println("Libro NO encontrado");
         return null;
     }
     static void UPDATE_CLIENT(String id){
