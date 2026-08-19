@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.biblioteca;
 
-/**
- *
- * @author Minec
- */
 public class Material {
+    public String code, title, publicationYear;
+
+    public Material(String code, String title, String publicationYear) {
+        this.code = code;
+        this.title = title;
+        this.publicationYear = publicationYear;
+    }
     
 }
