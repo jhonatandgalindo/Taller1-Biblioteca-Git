@@ -1,5 +1,6 @@
 package com.mycompany.biblioteca;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,16 +8,11 @@ public class Main {
 
     static ArrayList<Client> clients = new ArrayList<>();
     static ArrayList<Book> books = new ArrayList<>();
+    static ArrayList<Loan> loans = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        CREATE_BOOK();
-        CREATE_BOOK();
-        CREATE_BOOK();
-        BOOK_LIST();
-        String code=SEARCH_BOOK();
-        DELETE_BOOK(code);
-        BOOK_LIST();
+        
     }
 
     static void CREATE_CLIENT() {
@@ -54,7 +50,30 @@ public class Main {
         books.add(book);
         System.out.println("Libro registrado correctamente");
     }
-
+    static void CREATE_LOAN(){
+        String idLoan;
+        Client client;Book book;
+        LocalDate date;
+        String status;
+        System.out.println("\n### Registro Prestamo ###\n");
+        System.out.println("Ingrese la ID del prestamo:");
+        idLoan=sc.nextLine();
+        client=SEARCH_CLIENT();
+        do{
+            book=SEARCH_BOOK();
+            if(!book.available){
+                System.out.println("Libro no disponible, favor registrar otro.");
+            }else{
+                book.available=false;
+            }
+        }while(!book.available);
+        System.out.println("Ingrese la fecha del prestamo[Formato YYYY-MM-DD]:");
+        date = LocalDate.parse(sc.nextLine());
+        System.out.println("Ingrese estado del prestamo:");
+        status =sc.nextLine();
+        Loan loan = new Loan(idLoan,client,book,date,status);
+        loans.add(loan);
+    }
     static void CLIENT_LIST() {
         System.out.println("\n### Listado clientes ###\n");
         System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
@@ -76,8 +95,14 @@ public class Main {
             System.out.println(b.code + " - " + b.title + " - " + b.publicationYear + " - " + b.author + " - " + available);
         }
     }
-
-    static String SEARCH_CLIENT() {
+    static void LOAN_LIST(){
+        System.out.println("\n### Listado prestamos ###\n");
+        System.out.println("ID - CLIENTE - LIBRO - FECHA - ESTADO");
+        for (Loan l : loans) {
+            System.out.println(l.idLoan + " - " + l.client + " - " + l.book + " - " + l.date + " - " + l.status);
+        }
+    }
+    static Client SEARCH_CLIENT() {
         String id;
         System.out.println("\n### Buscar Cliente ###\n");
         System.out.println("Introduzca el ID del cliente:");
@@ -87,14 +112,14 @@ public class Main {
                 System.out.println("Cliente encontrado:");
                 System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
                 System.out.println(c.id + "\t\t" + c.name + "\t\t" + c.cellphone + "\t\t" + c.mail);
-                return id;
+                return c;
             }
         }
         System.out.println("Cliente NO encontrado");
         return null;
     }
 
-    static String SEARCH_BOOK() {
+    static Book SEARCH_BOOK() {
         String code;
         System.out.println("\n### Buscar libro ###\n");
         System.out.println("Introduzca el codigo del libro:");
@@ -110,7 +135,7 @@ public class Main {
                 System.out.println("Libro encontrado:");
                 System.out.println("CODIGO - TITULO - ANIO PUBLICACION - AUTOR - DISPONIBLE");
                 System.out.println(b.code + " - " + b.title + " - " + b.publicationYear + " - " + b.author + " - " + available);
-                return code;
+                return b;
             }
         }
         System.out.println("Libro NO encontrado");
@@ -173,6 +198,18 @@ public class Main {
                 System.out.println("\n### Eliminar Libro ###\n");
                 books.remove(i);
                 System.out.println("LIBRO ELIMINADO CORRECTAMENTE");
+                return;
+            }
+        }
+    }
+    static void RETURN_LOAN(String idLoan){
+        for (Loan l : loans) {
+            int i = 0;
+            if (l.idLoan.equals(idLoan)) {
+                l.book.available=true;
+                System.out.println("\n### DEVOLUCION PRESTAMO ###\n");
+                books.remove(i);
+                System.out.println("PRESTAMO DEVUELTO CORRECTAMENTE");
                 return;
             }
         }

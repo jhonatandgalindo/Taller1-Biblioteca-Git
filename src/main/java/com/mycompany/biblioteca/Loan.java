@@ -1,13 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.biblioteca;
 
-/**
- *
- * @author Minec
- */
+import java.time.LocalDate;
+
 public class Loan {
-    
+    String idLoan;
+    Client client;
+    Book book;
+    LocalDate date;
+    String status;
+
+    public Loan(String idLoan, Client client, Book book, LocalDate date, String status) {
+        this.idLoan = idLoan;
+        this.client = client;
+        this.book = book;
+        this.date = date;
+        this.status = status;
+    }
 }
