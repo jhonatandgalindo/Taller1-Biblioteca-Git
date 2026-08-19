@@ -6,14 +6,11 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<Client> clients = new ArrayList<>();
+    static ArrayList<Book> books = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        CREATE_CLIENT();CREATE_CLIENT();CREATE_CLIENT();
-        CLIENT_LIST();
-        String id = SEARCH_CLIENT();
-        DELETE_CLIENT(id);
-        CLIENT_LIST();
+        CREATE_BOOK();
     }
     
     static void CREATE_CLIENT(){
@@ -31,6 +28,25 @@ public class Main {
         clients.add(client);
         System.out.println("Cliente registrado correctamente");
     }
+    static void CREATE_BOOK(){
+        String code,title,publicationYear,author;
+        boolean available;
+        System.out.println("\n### Registrar Libro ###\n");
+        System.out.println("Ingrese codigo: ");
+        code = sc.nextLine();
+        System.out.println("Ingrese titulo: ");
+        title = sc.nextLine();
+        System.out.println("Ingrese año de publicacion: ");
+        publicationYear = sc.nextLine();
+        System.out.println("Ingrese autor: ");
+        author = sc.nextLine();
+        System.out.println("Disponible?[true(SI)|false(NO)]: ");
+        available = sc.nextBoolean();
+        Book book = new Book(code,title,publicationYear,author,available);
+        books.add(book);
+        System.out.println("Libro registrado correctamente");
+    }
+    
     static void CLIENT_LIST(){
         System.out.println("\n### Listado clientes ###\n");
         System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
