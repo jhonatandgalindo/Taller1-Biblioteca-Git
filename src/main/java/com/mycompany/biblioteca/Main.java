@@ -15,7 +15,7 @@ public class Main {
         CREATE_BOOK();
         BOOK_LIST();
         String code=SEARCH_BOOK();
-        UPDATE_BOOK(code);
+        DELETE_BOOK(code);
         BOOK_LIST();
     }
 
@@ -159,12 +159,22 @@ public class Main {
         for (Client c : clients) {
             int i = 0;
             if (c.id.equals(id)) {
-                System.out.println("\n### Actualizar Datos del Cliente ###\n");
+                System.out.println("\n### Eliminar Cliente ###\n");
                 clients.remove(i);
                 System.out.println("CLIENTE ELIMINADO CORRECTAMENTE");
                 return;
             }
         }
     }
-
+    static void DELETE_BOOK(String code){
+        for (Book b : books) {
+            int i = 0;
+            if (b.code.equals(code)) {
+                System.out.println("\n### Eliminar Libro ###\n");
+                books.remove(i);
+                System.out.println("LIBRO ELIMINADO CORRECTAMENTE");
+                return;
+            }
+        }
+    }
 }
