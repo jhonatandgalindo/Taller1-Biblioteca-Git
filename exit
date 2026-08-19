@@ -1,0 +1,40 @@
+[33mcommit cbbc3b2f4fd481fce4136a699028b2ae51285e2c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/manage-clients[m[33m)[m
+Author: Jhonatan David Galindo Gomez <jhonatandgalindo@unicesar.edu.co>
+Date:   Mon Aug 17 21:15:35 2026 -0500
+
+    feat: Metodo SEARCH_CLIENT añadido a la clase Main
+
+[1mdiff --git a/src/main/java/com/mycompany/biblioteca/Main.java b/src/main/java/com/mycompany/biblioteca/Main.java[m
+[1mindex cdbfe8e..35926ce 100644[m
+[1m--- a/src/main/java/com/mycompany/biblioteca/Main.java[m
+[1m+++ b/src/main/java/com/mycompany/biblioteca/Main.java[m
+[36m@@ -9,6 +9,9 @@[m [mpublic class Main {[m
+     static Scanner sc = new Scanner(System.in);[m
+ [m
+     public static void main(String[] args) {[m
+[32m+[m[32m        CREATE_CLIENT();CREATE_CLIENT();CREATE_CLIENT();[m
+[32m+[m[32m        CLIENT_LIST();[m
+[32m+[m[32m        SEARCH_CLIENT();[m
+     }[m
+     [m
+     static void CREATE_CLIENT(){[m
+[36m@@ -33,4 +36,19 @@[m [mpublic class Main {[m
+             System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);[m
+         }[m
+     }[m
+[32m+[m[32m    static void SEARCH_CLIENT(){[m
+[32m+[m[32m        String id;[m
+[32m+[m[32m        System.out.println("\n### Buscar Cliente ###\n");[m
+[32m+[m[32m        System.out.println("Introduzca el ID del cliente:");[m
+[32m+[m[32m        id = sc.nextLine();[m
+[32m+[m[32m        for(Client c : clients){[m
+[32m+[m[32m            if(c.id.equals(id)){[m
+[32m+[m[32m                System.out.println("Cliente encontrado:");[m
+[32m+[m[32m                System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");[m
+[32m+[m[32m                System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);[m
+[32m+[m[32m                return;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        System.out.println("Cliente NO encontrado");[m
+[32m+[m[32m    }[m
+ }[m
