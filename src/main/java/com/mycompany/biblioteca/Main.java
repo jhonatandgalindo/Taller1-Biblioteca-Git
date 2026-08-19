@@ -10,7 +10,8 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        CREATE_BOOK();
+        CREATE_BOOK();CREATE_BOOK();CREATE_BOOK();
+        BOOK_LIST();
     }
     
     static void CREATE_CLIENT(){
@@ -32,26 +33,38 @@ public class Main {
         String code,title,publicationYear,author;
         boolean available;
         System.out.println("\n### Registrar Libro ###\n");
-        System.out.println("Ingrese codigo: ");
+        System.out.println("Ingrese codigo:");
         code = sc.nextLine();
-        System.out.println("Ingrese titulo: ");
+        System.out.println("Ingrese titulo:");
         title = sc.nextLine();
-        System.out.println("Ingrese año de publicacion: ");
+        System.out.println("Ingrese anio de publicacion:");
         publicationYear = sc.nextLine();
-        System.out.println("Ingrese autor: ");
+        System.out.println("Ingrese autor:");
         author = sc.nextLine();
-        System.out.println("Disponible?[true(SI)|false(NO)]: ");
-        available = sc.nextBoolean();
+        System.out.println("Disponible?[true(SI)|false(NO)]:");
+        available = sc.nextBoolean();sc.nextLine();
         Book book = new Book(code,title,publicationYear,author,available);
         books.add(book);
         System.out.println("Libro registrado correctamente");
     }
-    
     static void CLIENT_LIST(){
         System.out.println("\n### Listado clientes ###\n");
         System.out.println("ID\t\tNOMBRE\t\tTELEFONO\t\tCORREO");
         for(Client c : clients){
             System.out.println(c.id+"\t\t"+c.name+"\t\t"+c.cellphone+"\t\t"+c.mail);
+        }
+    }
+    static void BOOK_LIST(){
+        System.out.println("\n### Listado libros ###\n");
+        System.out.println("CODIGO - TITULO -ANIO PUBLICACION - AUTOR - DISPONIBLE");
+        for(Book b : books){
+            String available;
+            if(b.available){
+                available="Si";
+            }else{
+                available="No";
+            }
+            System.out.println(b.code+" - "+b.title+" - "+b.publicationYear+" - "+b.author+" - "+available);
         }
     }
     static String SEARCH_CLIENT(){
